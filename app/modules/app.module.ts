@@ -10,11 +10,17 @@ import { DisplayComponent } from '../components/display.component';
 import { RequestGeneratorService } from '../services/request-generator.service';
 import { DispatcherService } from '../services/dispatcher.service';
 
+import {AgmCoreModule} from 'angular2-google-maps/core';
+
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+   /* AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCPlNzk9f2_878Znc35mstxjSTf56nFLz8'
+    })*/
   ],
 
   declarations: [
