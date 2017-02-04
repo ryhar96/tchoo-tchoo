@@ -8,9 +8,12 @@ export class Car {
     public carMovement: CarMovementService;
     public isAvailable: boolean;
 
-    constructor() {    
-        this.carMovement = new CarMovementService();
-        this.carMovement.setCar(this);
+    constructor(lon: number, lat: number) {    
+        //this.carMovement = new CarMovementService();
+        //this.carMovement.setCar(this);
+        this.currentLon = lon;
+        this.currentLat = lat;
+        this.isAvailable = true;
     }
 
     public moveCarTo(lon: number, lat: number): void {

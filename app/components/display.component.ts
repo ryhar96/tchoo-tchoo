@@ -24,6 +24,7 @@ export class DisplayComponent implements OnInit {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        this.dispatcher.setComponent(this);
     }
 
     public updateRequests() {
