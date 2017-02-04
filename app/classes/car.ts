@@ -1,11 +1,12 @@
 import { CarMovementService } from '../services/car-movement.service';
+import { Request } from './request';
 
 export class Car {
     public number: number;
-    private currentLon: number;
-    private currentLat: number;
-    private carMovement: CarMovementService;
-    private isAvailable: boolean;
+    public currentLon: number;
+    public currentLat: number;
+    public carMovement: CarMovementService;
+    public isAvailable: boolean;
 
     constructor() {    
         this.carMovement = new CarMovementService();
@@ -16,21 +17,9 @@ export class Car {
         this.carMovement.moveTo(lon, lat);
     }
 
-    public setPosition(lon: number, lat: number): void {
-        this.currentLon = lon;
-        this.currentLat = lat;
-    }
-
-    public getCurrentLon(lon: number): number {
-        return this.currentLon;
-    }
-    
-    public getCurrentLat(lat: number): number {
-        return this.currentLat;
-    }
-
-    public getAvailability(): boolean {
-        return this.isAvailable;
+    public assignRequest(request: Request): void {
+        this.moveCarTo(request.srcLon, request.srcLat);
+        this.moveCarTo(request.destLon, request.destLat);
     }
 }
 
