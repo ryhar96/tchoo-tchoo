@@ -1,34 +1,21 @@
 import { Injectable } from '@angular/core';
 
-let player: Player = new Player();
-let difficulty: string;
+import { Request } from './request-generator.service';
+import { Car } from './request-generator.service';
+import { RequestGeneratorService } from './request-generator.service';
 
 @Injectable()
-export class Dispatcher {
+export class DispatcherService {
 
     private cars[]: Car;
     private requests[]: Request;
 
-    private requestGenerator: RequestGenerator;
+    private requestGenerator: RequestGeneratorService;
+
+    addRequests(request: Request): void {
+        requests.push(request);
+    }
+
     
-    setPlayerName(name: string): void{
-        player.name = name;
-    }
-
-    getPlayerName(): string{
-        return player.name;
-    }
-
-    setDifficulty(newDifficulty: string): void{
-        difficulty = newDifficulty;
-    }
-
-    getDifficulty(): string{
-        return difficulty;
-    }
-
-    getScore(): number{
-        return player.score;
-    }
 
 }
