@@ -1,6 +1,8 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { DispatcherService } from '../services/dispatcher.service';
+import { Request } from '../classes/request';
+
 declare var google:any;
 @Component({
     selector: 'my-display',
@@ -9,7 +11,10 @@ declare var google:any;
 })
 
 export class DisplayComponent implements OnInit {
+
     constructor(private dispatcher: DispatcherService) { }
+
+    private requests: Request[];
 
      ngOnInit() {
         var mapProp = {
@@ -18,8 +23,11 @@ export class DisplayComponent implements OnInit {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        this.dispatcher.setComponent(this);
     }
 
-
+    public updateRequests() {
+        this.requests = this.dispatcher.requests;
+    }
 
 }

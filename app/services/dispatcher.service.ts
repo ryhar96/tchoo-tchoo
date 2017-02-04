@@ -3,14 +3,15 @@ import { Injectable, Inject } from '@angular/core';
 import { Request } from '../classes/request';
 //import { Car } from './request-generator.service';
 import { RequestGeneratorService } from './request-generator.service';
+import { DisplayComponent } from '../components/display.component';
 
 @Injectable()
 export class DispatcherService {
 
     //private cars[]: Car;
-    private requests: Request[];
-
-    private requestGenerator: RequestGeneratorService;
+    public requests: Request[];
+    public displayComponent: DisplayComponent;
+    public requestGenerator: RequestGeneratorService;
     
     constructor() {
         this.requests = [];
@@ -18,8 +19,13 @@ export class DispatcherService {
         this.requestGenerator.addDispatcher(this);
     }
 
-    addRequest(request: Request): void {
+    public setComponent(displayComponent: DisplayComponent) {
+        this.displayComponent = displayComponent;
+    }
+
+    public addRequest(request: Request): void {
         this.requests.push(request);
+        this.displayComponent.updateRequests();
         console.log(this.requests);
     }
 
