@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Car } from '../classes/car';
 
-let car: Car = new Car();
-
 @Injectable()
-export class CarMovement {
+export class CarMovementService {
 
     public longitude: number;
     public latitude: number;
 
-    moveTo(destLon: number, destLat: number) {
+    private car: Car;
+
+    public setCar(car: Car): void {
+        this.car = car;
+    }
+    public moveTo(destLon: number, destLat: number) {
         
     }
 }
