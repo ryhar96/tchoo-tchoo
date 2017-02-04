@@ -1,15 +1,15 @@
 export class Request {
 
-    public srcX: number;
-    public srcY: number;
-    public destX: number;
-    public destY: number;
+    public srcLon: number;
+    public srcLat: number;
+    public destLon: number;
+    public destLat: number;
 
-    constructor(srcX: number, srcY: number, destX: number, destY: number) {
-        this.srcX = srcX;
-        this.srcY = srcY;
-        this.destX = destX;
-        this.destY = destY;
+    constructor(srcLon: number, srcLat: number, destLon: number, destLat: number) {
+        this.srcLon = srcLon;
+        this.srcLat = srcLat;
+        this.destLon = destLon;
+        this.destLat = destLat;
     }
 
 }

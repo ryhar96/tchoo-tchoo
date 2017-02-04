@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Request } from '../classes/request';
 import { DispatcherService } from './dispatcher.service';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class RequestGeneratorService {
     
     private dispatcherService: DispatcherService;
 
-    constructor (dispatcherService : DispatcherService) {
+    public addDispatcher(dispatcherService: DispatcherService) {
         this.dispatcherService = dispatcherService;
-        setInterval(() => {this.createRequest(); }, 2000);
+        this.createRequest();
     }
     
-    createRequest(): void{
-        this.dispatcherService.addRequests(new Request(20,20,20,20));
+    private createRequest(): void{
+        Observable.interval(5000).subscribe(x => {
+            this.dispatcherService.addRequest(new Request(20,20,20,20));
+        });
     }
 
 }

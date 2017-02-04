@@ -4,6 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from '../components/app.component';
+import { DisplayComponent } from '../components/display.component';
+import { RequestGeneratorService } from '../services/request-generator.service';
+import { DispatcherService } from '../services/dispatcher.service';
 
 @NgModule({
   imports: [
@@ -13,10 +16,13 @@ import { AppComponent } from '../components/app.component';
   ],
 
   declarations: [
-    AppComponent
+    AppComponent,
+    DisplayComponent
   ],
 
   providers: [
+    RequestGeneratorService,
+    DispatcherService
   ],
 
   bootstrap: [ AppComponent ]
