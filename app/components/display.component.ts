@@ -13,8 +13,8 @@ declare var google:any;
 export class DisplayComponent implements OnInit {
 
     constructor(private dispatcher: DispatcherService) { }
-
     private requests: Request[];
+    public map: any;
 
      ngOnInit() {
         var mapProp = {
@@ -22,6 +22,7 @@ export class DisplayComponent implements OnInit {
             zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         this.dispatcher.setComponent(this);
     }
