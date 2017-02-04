@@ -1,6 +1,12 @@
 import { CarMovementService } from '../services/car-movement.service';
 import { Request } from './request';
 
+//-----------------------------------------------------------------------------------
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
+import { DisplayComponent } from '../components/display.component';
+//-----------------------------------------------------------------------------------
+
 export class Car {
     public number: number;
     public currentLon: number;
