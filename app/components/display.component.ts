@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 import { DispatcherService } from '../services/dispatcher.service';
-
+declare var google:any;
 @Component({
     selector: 'my-display',
-    template: 'azazeaze'
+    templateUrl: '../../assets/templates/display.component-template.html',
+   // styleUrls:['../../assets/stylessheets/styles.css']
 })
 
-export class DisplayComponent {
-    constructor(
-        private dispatcher: DispatcherService
-    ) { }
+export class DisplayComponent implements OnInit {
+    constructor(private dispatcher: DispatcherService) { }
+
+     ngOnInit() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+
+
+
 }
