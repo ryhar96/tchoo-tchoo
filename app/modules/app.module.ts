@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
+import { CarMovement } from '../services/car-movement.service';
+
 import { AppComponent } from '../components/app.component';
 
 @NgModule({
@@ -16,7 +18,8 @@ import { AppComponent } from '../components/app.component';
     AppComponent
   ],
 
-  providers: [
+  providers: [ 
+    CarMovement
   ],
 
   bootstrap: [ AppComponent ]
