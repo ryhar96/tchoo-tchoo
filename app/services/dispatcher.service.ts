@@ -50,6 +50,7 @@ export class DispatcherService {
     }
 
     public findNearestAvailable(lon: number, lat: number): Car { 
+
         let minDistance = 10000000; 
         let bestCar: Car = undefined; 
         for(let i = 0; i < this.cars.length; i++) { 
@@ -127,6 +128,7 @@ export class DispatcherService {
         this.requests.push(request);
         this.checkRequest(); // AVANT ?
         //this.checkRequest();
+        
         this.displayComponent.updateRequests();
     }
 
