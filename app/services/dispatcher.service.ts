@@ -62,7 +62,7 @@ export class DispatcherService {
                 ); 
                 console.log(this.cars[i]);
                 if(minDistance > this.distance) { 
-                    minDistance = distance; 
+                    minDistance = this.distance; 
                     bestCar = this.cars[i]; 
                 } 
             } 
