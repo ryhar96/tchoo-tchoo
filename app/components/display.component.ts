@@ -54,7 +54,7 @@ export class DisplayComponent implements OnInit {
       stylers: [
         { visibility: 'off' }
       ]
-    }
+    }]
       }
 
     private requests: Request[];
