@@ -53,6 +53,10 @@ export class Car {
             this.dispatcher.checkRequest();
         } else {
             //on a pas encore codé la partie réarrangement
+            //if car is avaible
+            //checkNerestZone with higher pound
+            //moveCarTo(zone)
+            //
         }
     }
 }
