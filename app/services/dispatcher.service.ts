@@ -72,7 +72,7 @@ export class DispatcherService {
     }
 
     public findDistance(currLng: number, currLat: number, lng: number, lat: number): number {
-
+        /*
         var dirDisplay = this.mapService.google.maps.DirectionsRenderer;
         var dirService = new this.mapService.google.maps.DirectionsService;
 
@@ -101,6 +101,8 @@ export class DispatcherService {
           }
         });
         return dist;
+        */
+        return  Math.sqrt(Math.pow((lng - currLng),2) + Math.pow((lat - currLat),2))
 
     }
 
@@ -125,9 +127,9 @@ export class DispatcherService {
 
     public addRequest(request: Request): void {
         this.requests.push(request);
+        this.checkRequest(); // AVANT ?
         //this.checkRequest();
         this.displayComponent.updateRequests();
-        //this.checkRequest(); // AVANT ?
     }
 
 }
