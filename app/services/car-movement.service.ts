@@ -3,9 +3,15 @@ import { Car } from '../classes/car';
 
 import { DisplayComponent } from '../components/display.component';
 import { MapService } from '../services/map.service';
+import { Observable } from 'rxjs/Rx';
 
 var dirDisplay: any;
 //var res: any;
+const wayPoints = [
+  {lat : 37.779798, lon:  -122.509527},
+  {lat : 37.779707, lon:  -122.490166},
+  {lat : 37.783065, lon:  -122.439852}
+]
 
 @Injectable()
 export class CarMovementService {
@@ -22,9 +28,8 @@ export class CarMovementService {
     public latitude: number;
     public position: number[];
     //public directionService: AgmCoreModule;
-
-//    public directionsService = new this.displayComponent.map.DirectionsService;
-  //  public directionsDisplay = new this.displayComponent.map.DirectionsRenderer;
+    //public directionsService = new this.mapService.google.maps.DirectionsService;
+    //public directionsDisplay = new this.mapService.google.maps.DirectionsRenderer;
     
 
     private car: Car;
@@ -38,39 +43,45 @@ export class CarMovementService {
     //    this.displayComponent.map;
     }
     public moveTo(destLon: number, destLat: number) {
-        
+        let i = 0;
+        var obs = Observable.interval(100).subscribe(x => {
+             //coordonnees de lq voiture = wayPoints[i].coordinnes
+             //i++
+             //if i == array.length
+             this.car.moveEnd()
+            // obs.unsubscribe();
+            //
+        });
     }
     
 
     public getRoute(destLon: number, destLat: number): void {
-        let positionOrigin = {lat:  this.latitude, lng: this.longitude};
-        
-        let positionEnd = {lat: destLat, lng: destLon};
-        console.log(positionEnd);
+      let positionOrigin = {lat:  this.latitude, lng: this.longitude};
+      
+      let positionEnd = {lat: destLat, lng: destLon};
+      console.log(positionEnd);
 
-        dirDisplay = this.mapService.google.maps.DirectionsRenderer;
-        var dirService = new this.mapService.google.maps.DirectionsService;
+      dirDisplay = this.mapService.google.maps.DirectionsRenderer;
+      var dirService = new this.mapService.google.maps.DirectionsService;
 
-        var waypts: number[];
-        
-        dirService.route({
-          origin: positionOrigin,
-          destination: positionEnd,
-          waypoints: waypts,
-          optimizeWaypoints: true,
-          travelMode: 'DRIVING'
-        }, (response: any, status: any) => {
-          if (status === 'OK') {
-            console.log(response);
-            this.res = response;
-          } else {
-            window.alert('Directions request failed due to ' + status);
-            console.log('514436');
-          }
-        });
+      var waypts: number[];
+      
+      dirService.route({
+        origin: positionOrigin,
+        destination: positionEnd,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: 'DRIVING'
+      }, (response: any, status: any) => {
+        if (status === 'OK') {
+          console.log(response);
+          this.res = response;
+        } else {
+          window.alert('Directions request failed due to ' + status);
+          console.log('514436');
+        }
+      });
         
     }
-
-
-   
+  
 }

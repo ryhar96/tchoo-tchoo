@@ -26,7 +26,7 @@ export class Car {
 
     public moveCarTo(lon: number, lat: number): void {
         
-        this.carMovement.getRoute(lon, lat);
+        this.carMovement.moveTo(lon, lat);
     }
 
     public assignRequest(request: Request): void {
