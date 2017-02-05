@@ -28,7 +28,6 @@ export class Car {
     }
 
     public moveCarTo(lon: number, lat: number): void {
-        
         this.carMovement.getRoute(this.currentLon, this.currentLat, lon, lat);
         this.carMovement.moveTo(lon, lat);
     }
@@ -38,7 +37,6 @@ export class Car {
     }
     
     public assignRequest(request: Request): void {
-        this.carMovement.i = 0;
         this.isAvailable = false;
         this.request = request;
         this.step = "first";

@@ -42,7 +42,7 @@ export class CarMovementService {
              console.log(i);
              if (i == this.wayPoints.length) {
                 this.car.endMove();
-                 obs.unsubscribe();
+                obs.unsubscribe();
              }
              //this.car.moveEnd()
             
