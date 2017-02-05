@@ -5,6 +5,8 @@ import { Car } from '../classes/car';
 import { RequestGeneratorService } from './request-generator.service';
 import { DisplayComponent } from '../components/display.component';
 
+import { MapService } from './map.service';
+
 const LAT_MAX = 45.548669;
 const LAT_MIN = 45.548286;
 
@@ -21,7 +23,9 @@ export class DispatcherService {
     public displayComponent: DisplayComponent;
     public requestGenerator: RequestGeneratorService;
     
-    constructor() {
+    constructor(
+        public mapService: MapService
+    ) {
         this.cars = [];
         this.requests = [];
         this.requestGenerator = new RequestGeneratorService();
@@ -52,14 +56,14 @@ export class DispatcherService {
                 } 
             } 
         } 
-        return bestCar;  */return new Car(0, 0);
+        return bestCar;  */return new Car(0, 0, this.mapService);
     }
 
     private createCars(n: number) {
         for(let i = 0; i < n; i++) {
             let srcLon : number = Number((Math.random() * (LON_MAX - LON_MIN) + LON_MIN).toFixed(6));
             let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
-            this.cars.push(new Car(srcLon, srcLat));
+            this.cars.push(new Car(srcLon, srcLat, this.mapService));
         }
     }
 

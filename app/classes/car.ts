@@ -13,18 +13,15 @@ export class Car {
     public step: string;
     public request: Request;
 
-    public map: MapService;
-
     
     constructor(lon: number, lat: number, map: MapService) {    
-        //this.carMovement = new CarMovementService();
-        //this.carMovement.setCar(this);
+        this.carMovement = new CarMovementService(map);
+        this.carMovement.setCar(this);
         this.currentLon = lon;
         this.currentLat = lat;
         this.isAvailable = true;
         this.step = "0";
-        this.map = map;
-        this.carMovement = new CarMovementService(this.map);
+        //this.map = map;
     }
 
     public moveCarTo(lon: number, lat: number): void {

@@ -59,13 +59,5 @@ export class DisplayComponent implements OnInit {
     onSelect(request: Request): void {
     this.selectedRequest = request;
   }
-//------------------------------------------------------------------------------------------------
-    private createCar(n: number) {
-        for(let i = 0; i < n; i++) {
-            let srcLon : number = Number((Math.random() * (LON_MAX - LON_MIN) + LON_MIN).toFixed(6));
-            let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
-            this.car = new Car(srcLon, srcLat, this.mapService);
-        }
-    }
-//------------------------------------------------------------------------------------------------
+
 }

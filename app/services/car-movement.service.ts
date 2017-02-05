@@ -4,7 +4,6 @@ import { Car } from '../classes/car';
 import { DisplayComponent } from '../components/display.component';
 import { MapService } from '../services/map.service';
 
-var display: MapService;
 var dirDisplay: any;
 //var res: any;
 
@@ -16,6 +15,7 @@ export class CarMovementService {
     ) {
         this.latitude = 45.517814;
         this.longitude = -73.645481;
+        
      }
 
     public longitude: number;
@@ -48,7 +48,6 @@ export class CarMovementService {
         let positionEnd = {lat: destLat, lng: destLon};
         console.log(positionEnd);
 
-        display = this.mapService;
         dirDisplay = this.mapService.google.maps.DirectionsRenderer;
         var dirService = new this.mapService.google.maps.DirectionsService;
 
