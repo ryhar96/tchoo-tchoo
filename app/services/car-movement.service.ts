@@ -6,14 +6,17 @@ import { MapService } from '../services/map.service';
 
 var display: MapService;
 var dirDisplay: any;
-var res: any;
+//var res: any;
 
 @Injectable()
 export class CarMovementService {
 
     constructor(
         public mapService: MapService
-    ) { }
+    ) {
+        this.latitude = 45.517814;
+        this.longitude = -73.645481;
+     }
 
     public longitude: number;
     public latitude: number;
@@ -26,10 +29,11 @@ export class CarMovementService {
 
     private car: Car;
 
+    public res: any;
+
     public setCar(car: Car): void {
         this.car = car;
-        this.latitude = 45.517814;
-        this.longitude = -73.645481;
+        
         //this.directionService = ;
     //    this.displayComponent.map;
     }
@@ -39,7 +43,8 @@ export class CarMovementService {
     
 
     public getRoute(destLon: number, destLat: number): void {
-        let positionOrigin: {lat: 45.517814, lng: -73.645481};
+        let positionOrigin = {lat:  this.latitude, lng: this.longitude};
+        console.log(this.longitude);
         var positionEnd: number[] = [destLat, destLon];
                     
 
@@ -50,7 +55,7 @@ export class CarMovementService {
         var waypts: number[];
         
         dirService.route({
-          origin: {lat: 45.517814, lng: -73.645481},
+          origin: positionOrigin,
           destination: {lat: 45.517814, lng: -63.645481},
           waypoints: waypts,
           optimizeWaypoints: true,
@@ -58,8 +63,7 @@ export class CarMovementService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             console.log(response);
-            dirDisplay.setDirections(response);
-            console.log('fsdfsa');            
+            this.res = response;
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
