@@ -14,7 +14,7 @@ const LAT_MIN = 45.450963;
 const LON_MIN = -73.754601;
 const LON_MAX = -73.532482;
 
-const N_CARS = 5;
+const N_CARS = 0;
 
 @Injectable()
 export class DispatcherService {
@@ -111,6 +111,8 @@ export class DispatcherService {
             let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
             this.cars.push(new Car(srcLon, srcLat, this.mapService));
             this.cars[this.cars.length-1].setDispatcher(this);
+            this.cars[this.cars.length-1].request = new Request(srcLon,srcLat,-73.561264,45.504078);
+            this.cars[this.cars.length-1].moveCarTo(this.cars[this.cars.length-1].request.destLon, this.cars[this.cars.length-1].request.destLat);
         }
     }
 

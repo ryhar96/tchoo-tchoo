@@ -64,7 +64,7 @@ export class Car {
             this.request = undefined;
             this.marker.setIcon('../../assets/green.png');
 
-            this.request = new Request(this.currentLon,this.currentLat,-73.885423, 45.439253);
+            this.request = new Request(this.currentLon,this.currentLat,-73.561264,45.504078);
             this.moveCarTo(this.request.destLon, this.request.destLat);
             this.dispatcher.checkRequest();
 

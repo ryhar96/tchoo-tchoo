@@ -27,7 +27,7 @@ export class DisplayComponent implements OnInit {
 //------------------------------------------------------------------------------------------------
     public car: Car;
     styleArray:any[];
-    public nCars = 5; 
+    public nCars = 0; 
 //------------------------------------------------------------------------------------------------
 
     constructor(
