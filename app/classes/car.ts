@@ -13,6 +13,7 @@ export class Car {
     public step: string;
     public request: Request;
 
+    public marker: any;
     
     constructor(lon: number, lat: number, map: MapService) {    
         this.carMovement = new CarMovementService(map);
