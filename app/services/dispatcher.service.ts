@@ -38,6 +38,7 @@ export class DispatcherService {
     public assignRequest(request: Request) { 
         let car = this.findNearestAvailable(request.srcLon, request.srcLat); 
         request.isBeingProcessed = true;
+        this.displayComponent.updateRequests();
         car.assignRequest(request);
     } 
  

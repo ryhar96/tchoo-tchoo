@@ -29,6 +29,7 @@ export class CarMovementService {
 
     private car: Car;
 
+    public wayPoints: any[];
     public res: any;
 
     public setCar(car: Car): void {
@@ -46,7 +47,7 @@ export class CarMovementService {
         let positionOrigin = {lat:  this.latitude, lng: this.longitude};
         
         let positionEnd = {lat: destLat, lng: destLon};
-        console.log(positionEnd);
+        //console.log(positionEnd);
 
         dirDisplay = this.mapService.google.maps.DirectionsRenderer;
         var dirService = new this.mapService.google.maps.DirectionsService;
@@ -61,13 +62,33 @@ export class CarMovementService {
           travelMode: 'DRIVING'
         }, (response: any, status: any) => {
           if (status === 'OK') {
-            console.log(response);
-            this.res = response;
+            //console.log(response);
+            this.wayPoints = response.routes;
+            //this.res = response;
+            console.log(this.wayPoints[0]);
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
           }
         });
+
+        /*dirService.route({
+          origin: this.wayPoints[0].legs[0].steps[0].end_location,
+          destination: this.wayPoints[0].legs[0].steps[1].start_location,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, (response: any, status: any) => {
+          if (status === 'OK') {
+            //console.log(response);
+            this.wayPoints = response.routes;
+            //this.res = response;
+            console.log(this.wayPoints[0].legs[0].steps);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+            console.log('514436');
+          }
+        });*/
         
     }
 
