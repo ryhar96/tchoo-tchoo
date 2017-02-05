@@ -27,6 +27,7 @@ export class DisplayComponent implements OnInit {
 //------------------------------------------------------------------------------------------------
     public car: Car;
     styleArray:any[];
+    public nCars = 20; 
 //------------------------------------------------------------------------------------------------
 
     constructor(
@@ -35,27 +36,28 @@ export class DisplayComponent implements OnInit {
         
     ) { 
      
-    this.styleArray = [
-    {
-      featureType: 'road',
-      stylers: [
-        { saturation: -80 }
-      ]
-    },{
-      featureType: 'road.arterial',
-      elementType: 'geometry',
-      stylers: [
-        { hue: '#00d4ff' },
-        { saturation: 50 }
-      ]
-    },{
-      featureType: 'road',
-      elementType: 'labels',
-      stylers: [
-        { visibility: 'off' }
-      ]
-    }]
-      }
+        this.styleArray = [
+        {
+        featureType: 'road',
+        stylers: [
+            { saturation: -80 }
+        ]
+        },{
+        featureType: 'road.arterial',
+        elementType: 'geometry',
+        stylers: [
+            { hue: '#00d4ff' },
+            { saturation: 50 }
+        ]
+        },{
+        featureType: 'road',
+        elementType: 'labels',
+        stylers: [
+            { visibility: 'off' }
+        ]
+
+        }];
+    }
 
     private requests: Request[];
     private cars: Car[];

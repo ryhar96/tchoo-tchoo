@@ -3,6 +3,7 @@ import { Request } from './request';
 
 import { MapService } from '../services/map.service';
 
+import { DispatcherService } from '../services/dispatcher.service';
 
 export class Car {
     public number: number;
@@ -12,7 +13,7 @@ export class Car {
     public isAvailable: boolean;
     public step: string;
     public request: Request;
-
+    public dispatcher: DispatcherService;
     public marker: any;
     
     constructor(lon: number, lat: number, map: MapService) {    
@@ -29,8 +30,13 @@ export class Car {
     public moveCarTo(lon: number, lat: number): void {
         
         this.carMovement.getRoute(lon, lat);
+        this.carMovement.getRoute(this.currentLon, this.currentLat, lon, lat);
+        this.carMovement.moveTo(lon, lat);
     }
 
+    public setDispatcher(dispatcher: DispatcherService): void {
+        this.dispatcher = dispatcher;
+    }
     public assignRequest(request: Request): void {
         this.isAvailable = false;
         this.request = request;
@@ -45,6 +51,7 @@ export class Car {
         } else if(this.step == "second") {
             this.step = "0";
             this.isAvailable = true;
+            this.dispatcher.checkRequest();
         } else {
             //on a pas encore codé la partie réarrangement
             //if car is avaible
