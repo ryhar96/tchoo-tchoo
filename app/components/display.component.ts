@@ -68,7 +68,7 @@ export class DisplayComponent implements OnInit {
         let a = this.nCars - this.cars.length;
         if(a < 0) {
             for(let i = 0; i < a; i++) {
-                this.cars.pop();
+                this.dispatcher.cars.pop();
             }
         }
         else if(a > 0) {

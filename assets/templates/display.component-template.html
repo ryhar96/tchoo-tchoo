@@ -1,7 +1,7 @@
 <body>
   <div class="main">
       <p id="niveau">
-        <input class="form-control" [(ngModel)]="nCars" (click)="changeNCars()">
+        <input class="form-control" [(ngModel)]="nCars" (ngModelChange)="changeNCars()">
     </p>
     <div id="googleMap" class="col-sm-9"></div>
     <div class="requests col-sm-3">
