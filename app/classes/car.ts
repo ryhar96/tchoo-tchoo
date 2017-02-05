@@ -16,7 +16,7 @@ export class Car {
     public dispatcher: DispatcherService;
     public marker: any;
     public casseToi: boolean;
-
+    public map: any;
     constructor(lon: number, lat: number, map: MapService) {    
         this.carMovement = new CarMovementService(map);
         this.carMovement.setCar(this);
@@ -25,7 +25,7 @@ export class Car {
         this.isAvailable = true;
         this.step = "0";
         this.casseToi = false;
-        //this.map = map;
+        this.map = map;
     }
 
     public moveCarTo(lon: number, lat: number): void {
@@ -56,6 +56,8 @@ export class Car {
             this.marker.setIcon('../../assets/red.png');
             this.request.people = true;
         } else if(this.step == "second") {
+        this.carMovement = new CarMovementService(this.map);
+        this.carMovement.setCar(this);
             this.request.people = false;
             this.step = "0";
             this.isAvailable = true;

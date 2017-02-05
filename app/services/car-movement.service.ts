@@ -40,11 +40,13 @@ export class CarMovementService {
              this.car.currentLat = this.wayPoints[i].lat();
              i++;
              console.log(i);
-             if (i == this.wayPoints.length) {
+             if (i == this.wayPoints.length-1) {
+                //i = 0;
                 this.car.endMove();
                 obs.unsubscribe();
              }
              if(this.car.casseToi) {
+                 //i = 0;
                  obs.unsubscribe();
              }
              //this.car.moveEnd()
