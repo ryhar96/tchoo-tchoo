@@ -45,7 +45,7 @@ export class DisplayComponent implements OnInit {
         this.car = new Car(45.517814, -73.645481, this.mapService);
         var mapProp = {
             center: new google.maps.LatLng(45.517814, -73.645481),
-            zoom: 10,
+            zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         console.log(document.getElementById("googleMap"));
@@ -67,7 +67,7 @@ export class DisplayComponent implements OnInit {
                 {
                     position: { lat: car.currentLat, lng: car.currentLon },
                     map: this.mapService.map,
-                    //icon: 
+                    icon: '../../assets/rcar2.png' 
 
                 }
             )
