@@ -13,13 +13,15 @@ export class Car {
     public currentLat: number;
     public carMovement: CarMovementService;
     public isAvailable: boolean;
-
+    public step: string;
+    public request: Request;
     constructor(lon: number, lat: number) {    
         //this.carMovement = new CarMovementService();
         //this.carMovement.setCar(this);
         this.currentLon = lon;
         this.currentLat = lat;
         this.isAvailable = true;
+        this.step = "0";
     }
 
     public moveCarTo(lon: number, lat: number): void {
@@ -27,13 +29,21 @@ export class Car {
     }
 
     public assignRequest(request: Request): void {
+        this.isAvailable = false;
+        this.request = request;
+        this.step = "first";
         this.moveCarTo(request.srcLon, request.srcLat);
-        this.moveCarTo(request.destLon, request.destLat);
+    }
+
+    public endMove() {
+        if(this.step == "first") {
+            this.moveCarTo(this.request.destLon, this.request.destLat);
+            this.step = "second";
+        } else if(this.step == "second") {
+            this.step = "0";
+            this.isAvailable = true;
+        } else {
+            //on a pas encore codé la partie réarrangement
+        }
     }
 }
-
-
-//srcLon
-//srcLat
-//destLon  
-//destLat
