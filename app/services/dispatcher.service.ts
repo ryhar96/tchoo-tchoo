@@ -67,6 +67,7 @@ export class DispatcherService {
                 } 
             } 
         } 
+        console.log(bestCar);
         return bestCar;
     }
 
@@ -80,7 +81,7 @@ export class DispatcherService {
         let positionEnd = {lat: lat, lng: lng};
 
 
-        var waypts: number[];
+       // var waypts: number[];
 
         dirService.route({
           origin: positionOrigin,
@@ -90,7 +91,7 @@ export class DispatcherService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             //console.log(response);
-            this.distance = response.routes[0].legs[0].distance.value;
+            this.distance = response.routes[0].legs[0].distance.value; //distance en metre 
             //this.res = response;
             console.log(this.distance);
           } else {
@@ -102,7 +103,7 @@ export class DispatcherService {
 
     }
 
-    private createCars(n: number) {
+    public createCars(n: number) {
         for(let i = 0; i < n; i++) {
             let srcLon : number = Number((Math.random() * (LON_MAX - LON_MIN) + LON_MIN).toFixed(6));
             let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
@@ -123,7 +124,9 @@ export class DispatcherService {
 
     public addRequest(request: Request): void {
         this.requests.push(request);
+        //this.checkRequest();
         this.displayComponent.updateRequests();
+        //this.checkRequest(); // AVANT ?
     }
 
 }

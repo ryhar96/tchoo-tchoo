@@ -64,6 +64,18 @@ export class DisplayComponent implements OnInit {
     public map: any;
     selectedRequest:Request;
 
+    public changeNCars() {
+        let a = this.nCars - this.cars.length;
+        if(a < 0) {
+            for(let i = 0; i < a; i++) {
+                this.cars.pop();
+            }
+        }
+        else if(a > 0) {
+            this.dispatcher.createCars(a);
+        }
+    }
+
     ngOnInit() {
         this.dispatcher.setComponent(this);
         this.car = new Car(45.517814, -73.645481, this.mapService);
