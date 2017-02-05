@@ -6,6 +6,7 @@ import { RequestGeneratorService } from './request-generator.service';
 import { DisplayComponent } from '../components/display.component';
 
 import { MapService } from './map.service';
+import { Observable } from 'rxjs/Rx';
 
 const LAT_MAX = 45.548669;
 const LAT_MIN = 45.548286;
@@ -31,11 +32,13 @@ export class DispatcherService {
         this.requestGenerator = new RequestGeneratorService();
         this.requestGenerator.addDispatcher(this);
         this.createCars(N_CARS);
+        this.updateCars();
     }
 
     public assignRequest(request: Request) { 
         let car = this.findNearestAvailable(request.srcLon, request.srcLat); 
         request.isBeingProcessed = true;
+        this.displayComponent.updateRequests();
         car.assignRequest(request);
     } 
  
@@ -71,10 +74,15 @@ export class DispatcherService {
         this.displayComponent = displayComponent;
     }
 
+    private updateCars() {
+        Observable.interval(50).subscribe(x => {
+            this.displayComponent.updateCars();
+        });
+    }
+
     public addRequest(request: Request): void {
         this.requests.push(request);
         this.displayComponent.updateRequests();
-        console.log(this.requests);
     }
 
 }
