@@ -29,13 +29,14 @@ export class DisplayComponent implements OnInit {
 //------------------------------------------------------------------------------------------------
 
     constructor(
-        private dispatcher: DispatcherService,
+        public dispatcher: DispatcherService,
         public mapService: MapService
     ) {   
         //this.createCar(0);
       }
 
     private requests: Request[];
+    private cars: Car[];
     public map: any;
     selectedRequest:Request;
 
@@ -56,8 +57,9 @@ export class DisplayComponent implements OnInit {
     public updateRequests() {
         this.requests = this.dispatcher.requests;
     }
-    onSelect(request: Request): void {
-    this.selectedRequest = request;
-  }
+
+    public updateCars() {
+        this.cars = this.dispatcher.cars;
+    }
 
 }

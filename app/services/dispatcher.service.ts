@@ -6,6 +6,7 @@ import { RequestGeneratorService } from './request-generator.service';
 import { DisplayComponent } from '../components/display.component';
 
 import { MapService } from './map.service';
+import { Observable } from 'rxjs/Rx';
 
 const LAT_MAX = 45.548669;
 const LAT_MIN = 45.548286;
@@ -69,6 +70,12 @@ export class DispatcherService {
 
     public setComponent(displayComponent: DisplayComponent) {
         this.displayComponent = displayComponent;
+    }
+
+    private updateCars() {
+        Observable.interval(50).subscribe(x => {
+            this.displayComponent.updateCars();
+        });
     }
 
     public addRequest(request: Request): void {
