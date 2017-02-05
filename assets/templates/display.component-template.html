@@ -1,27 +1,22 @@
 <body>
-    <div class="container">
-    <h2 id="googleMap"></h2>
-          
-    <div id="request">
-    <h2 >Requests</h2>
-    <ul class="heroes">
-      <ul class ="source">    Source 
-        <span id="destination">  Destination </span>
-      <li *ngFor="let request of requests"
-        [class.selected]="request === selectedRequest"
-        (click)="onSelect(request)">
-
-        <span class="badge">{{request.srcLon}}</span> {{request.srcLat}} 
-      </li>
-      
-     </ul>
-    </ul>
-    <div *ngIf="selectedRequest">
-      <h2>{{selectedRequest.srcLon}} details!</h2>
-      <div><label>id: </label>{{selectedRequest.srcLat}}</div>
-      <div>
-      </div>
+  <div class="main">
+    <div id="googleMap" class="col-sm-9"></div>
+    <div class="requests col-sm-3">
+      <h2>Requests</h2>
+      <ul>
+          <li *ngFor="let request of requests">
+              <div class="alert alert-success" *ngIf="request.isBeingProcessed">
+              <p style="font-weight:bold"><i class="fa fa-check" aria-hidden="true"></i> En cours...</p>
+                ({{ request.srcLon.toFixed(3) }} ; {{request.srcLat.toFixed(3)}})
+              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+              </div>
+              <div class="alert alert-warning" *ngIf="request.isBeingProcessed === false">
+                <p style="font-weight:bold"><i class="fa fa-male" aria-hidden="true"></i> En attente :</p>
+                ({{ request.srcLon.toFixed(3) }} ; {{request.srcLat.toFixed(3)}})
+              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+              </div>
+          </li>
+      </ul>
     </div>
-    </div>
-     </div>
+  </div>
 </body>
