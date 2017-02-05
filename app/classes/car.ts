@@ -36,10 +36,13 @@ export class Car {
     public setDispatcher(dispatcher: DispatcherService): void {
         this.dispatcher = dispatcher;
     }
+    
     public assignRequest(request: Request): void {
+        this.carMovement.i = 0;
         this.isAvailable = false;
         this.request = request;
         this.step = "first";
+        console.log(this);
         this.moveCarTo(request.srcLon, request.srcLat);
     }
 

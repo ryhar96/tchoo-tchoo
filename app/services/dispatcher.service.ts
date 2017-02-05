@@ -14,7 +14,7 @@ const LAT_MIN = 45.450963;
 const LON_MIN = -73.754601;
 const LON_MAX = -73.532482;
 
-const N_CARS = 20;
+const N_CARS = 1;
 
 @Injectable()
 export class DispatcherService {
@@ -60,14 +60,12 @@ export class DispatcherService {
                     lon, 
                     lat 
                 ); 
-                console.log(this.cars[i]);
                 if(minDistance > dist) { 
                     minDistance = dist; 
                     bestCar = this.cars[i]; 
                 } 
             } 
         } 
-        console.log(bestCar);
         return bestCar;
     }
 

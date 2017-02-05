@@ -27,7 +27,7 @@ export class DisplayComponent implements OnInit {
 //------------------------------------------------------------------------------------------------
     public car: Car;
     styleArray:any[];
-    public nCars = 20; 
+    public nCars = 1; 
 //------------------------------------------------------------------------------------------------
 
     constructor(
@@ -105,6 +105,7 @@ export class DisplayComponent implements OnInit {
 
     public updateCars() {
         this.cars = this.dispatcher.cars;
+        console.log(this.cars.length);
         for( let car of this.cars)
         {
            if(car.marker === undefined) {

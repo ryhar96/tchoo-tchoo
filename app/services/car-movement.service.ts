@@ -28,15 +28,21 @@ export class CarMovementService {
         
         //this.directionService = ;
     //    this.displayComponent.map;
-    }
+}
+
+public i = 0;
+
     public moveTo(destLon: number, destLat: number) {
-        let i = 0;
+        this.i = 0;
         var obs = Observable.interval(5000).subscribe(x => {
              //coordonnees de lq voiture = wayPoints[i].coordinnes
-             this.car.currentLon = this.wayPoints[i].lng();
-             this.car.currentLat = this.wayPoints[i].lat();
-             i++;
-             if (i == this.wayPoints.length) {
+             console.log(this.car.currentLon);
+             this.car.currentLon = this.wayPoints[this.i].lng();
+             console.log(this.car.currentLon);
+             this.car.currentLat = this.wayPoints[this.i].lat();
+             this.i++;
+             console.log(this.i);
+             if (this.i == this.wayPoints.length) {
                 this.car.endMove();
              }
              //this.car.moveEnd()
@@ -50,8 +56,6 @@ export class CarMovementService {
 
         let positionOrigin = {lat:  srcLat, lng: srcLon};
         let positionEnd = {lat: destLat, lng: destLon};
-        console.log(positionEnd);
-        console.log(positionOrigin);
         
         var dirService = new this.mapService.google.maps.DirectionsService;
 
