@@ -113,7 +113,7 @@ export class DisplayComponent implements OnInit {
                 {
                     position: { lat: car.currentLat, lng: car.currentLon },
                     map: this.mapService.map,
-                    //icon: '../../assets/rcar2.png' 
+                    icon: '../../assets/green.png' 
 
                 }
             ) }

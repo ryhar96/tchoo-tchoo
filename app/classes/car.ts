@@ -40,6 +40,7 @@ export class Car {
         this.isAvailable = false;
         this.request = request;
         this.step = "first";
+        this.marker.setIcon('../../assets/yellow.png');
         console.log(this);
         this.moveCarTo(request.srcLon, request.srcLat);
     }
@@ -48,6 +49,7 @@ export class Car {
         if(this.step == "first") {
             this.moveCarTo(this.request.destLon, this.request.destLat);
             this.step = "second";
+            this.marker.setIcon('../../assets/red.png');
         } else if(this.step == "second") {
             this.step = "0";
             this.isAvailable = true;
@@ -57,6 +59,7 @@ export class Car {
             }
             this.dispatcher.checkRequest();
             this.request = undefined;
+            this.marker.setIcon('../../assets/green.png');
         } else {
             //on a pas encore codé la partie réarrangement
             //if car is avaible
