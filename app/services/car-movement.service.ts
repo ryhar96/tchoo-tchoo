@@ -46,13 +46,13 @@ export class CarMovementService {
     }
     
 
-    public getRoute(srcLon:number, srcLat: number, destLon: number, destLat: number): any {
+    public getRoute(srcLon:number, srcLat: number, destLon: number, destLat: number){
 
         let positionOrigin = {lat:  srcLat, lng: srcLon};
         let positionEnd = {lat: destLat, lng: destLon};
         console.log(positionEnd);
         console.log(positionOrigin);
-        var qgfq;
+        
         var dirService = new this.mapService.google.maps.DirectionsService;
 
         dirDisplay = this.mapService.google.maps.DirectionsRenderer;
@@ -76,7 +76,7 @@ export class CarMovementService {
             console.log('514436');
           }
         });
-        return qgfq;
+    
     }
   
 }
