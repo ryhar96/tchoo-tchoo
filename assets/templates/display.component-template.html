@@ -5,11 +5,16 @@
     <div id="request">
     <h2 >Requests</h2>
     <ul class="heroes">
+      <ul class ="source">    Source 
+        <span id="destination">  Destination </span>
       <li *ngFor="let request of requests"
         [class.selected]="request === selectedRequest"
         (click)="onSelect(request)">
-        <span class="badge">{{request.srcLon}}</span> {{request.srcLat}}
+
+        <span class="badge">{{request.srcLon}}</span> {{request.srcLat}} 
       </li>
+      
+     </ul>
     </ul>
     <div *ngIf="selectedRequest">
       <h2>{{selectedRequest.srcLon}} details!</h2>
