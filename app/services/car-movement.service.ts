@@ -13,19 +13,10 @@ export class CarMovementService {
 
     constructor(
         public mapService: MapService
-    ) {
-        this.latitude = 45.517814;
-        this.longitude = -73.645481;
-        
-     }
-
+    ) {}
     public longitude: number;
     public latitude: number;
     public position: number[];
-    //public directionService: AgmCoreModule;
-    //public directionsService = new this.mapService.google.maps.DirectionsService;
-    //public directionsDisplay = new this.mapService.google.maps.DirectionsRenderer;
-    
 
     private car: Car;
 
@@ -55,16 +46,17 @@ export class CarMovementService {
     }
     
 
-    public getRoute(destLon: number, destLat: number): void {
+    public getRoute(srcLon:number, srcLat: number, destLon: number, destLat: number): any {
 
-        let positionOrigin = {lat:  this.latitude, lng: this.longitude};
-        
+        let positionOrigin = {lat:  srcLat, lng: srcLon};
         let positionEnd = {lat: destLat, lng: destLon};
-        //console.log(positionEnd);
+        console.log(positionEnd);
+        console.log(positionOrigin);
+        var qgfq;
+        var dirService = new this.mapService.google.maps.DirectionsService;
 
-
-      dirDisplay = this.mapService.google.maps.DirectionsRenderer;
-      var dirService = new this.mapService.google.maps.DirectionsService;
+        dirDisplay = this.mapService.google.maps.DirectionsRenderer;
+        var dirService = new this.mapService.google.maps.DirectionsService;
 
         var waypts: number[];
         
@@ -77,17 +69,15 @@ export class CarMovementService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             //console.log(response);
+            qgfq= response.routes[0].overview_path[0].lat();
             this.wayPoints = response.routes[0].overview_path;
             //this.res = response;
-            console.log(this.wayPoints[0]);
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
           }
         });
-
-        this.moveTo(destLon,destLat);
-        
+        return qgfq;
     }
   
 }
