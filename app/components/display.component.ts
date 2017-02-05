@@ -74,6 +74,7 @@ export class DisplayComponent implements OnInit {
         else if(a > 0) {
             this.dispatcher.createCars(a);
         }
+        this.updateCars();
     }
 
     ngOnInit() {

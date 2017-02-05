@@ -110,7 +110,6 @@ export class DispatcherService {
             this.cars.push(new Car(srcLon, srcLat, this.mapService));
             this.cars[this.cars.length-1].setDispatcher(this);
         }
-        this.displayComponent.updateCars();
     }
 
     public setComponent(displayComponent: DisplayComponent) {
