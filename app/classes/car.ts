@@ -22,12 +22,13 @@ export class Car {
         this.currentLat = lat;
         this.isAvailable = true;
         this.step = "0";
+
         //this.map = map;
     }
 
     public moveCarTo(lon: number, lat: number): void {
         
-        this.carMovement.moveTo(lon, lat);
+        this.carMovement.getRoute(lon, lat);
     }
 
     public assignRequest(request: Request): void {

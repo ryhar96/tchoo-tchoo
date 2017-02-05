@@ -6,12 +6,7 @@ import { MapService } from '../services/map.service';
 import { Observable } from 'rxjs/Rx';
 
 var dirDisplay: any;
-//var res: any;
-const wayPoints = [
-  {lat : 37.779798, lon:  -122.509527},
-  {lat : 37.779707, lon:  -122.490166},
-  {lat : 37.783065, lon:  -122.439852}
-]
+
 
 @Injectable()
 export class CarMovementService {
@@ -35,7 +30,7 @@ export class CarMovementService {
     private car: Car;
 
     public wayPoints: any[];
-    public res: any;
+    //public res: any;
 
     public setCar(car: Car): void {
         this.car = car;
@@ -45,14 +40,15 @@ export class CarMovementService {
     }
     public moveTo(destLon: number, destLat: number) {
         let i = 0;
-        var obs = Observable.interval(100).subscribe(x => {
+        //var obs = Observable.interval(100).subscribe(x => {
              //coordonnees de lq voiture = wayPoints[i].coordinnes
+             //this.car.currentLon = this.wayPoints[i].lng;
              //i++
              //if i == array.length
-             this.car.moveEnd()
+             //this.car.moveEnd()
             // obs.unsubscribe();
             //
-        });
+        //});
     }
     
 
@@ -78,33 +74,14 @@ export class CarMovementService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             //console.log(response);
-            this.wayPoints = response.routes;
+            this.wayPoints = response.routes[0].overview_path;
             //this.res = response;
-            console.log(this.wayPoints[0]);
+            console.log(this.wayPoints[0].lat());
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
           }
         });
-
-        /*dirService.route({
-          origin: this.wayPoints[0].legs[0].steps[0].end_location,
-          destination: this.wayPoints[0].legs[0].steps[1].start_location,
-          waypoints: waypts,
-          optimizeWaypoints: true,
-          travelMode: 'DRIVING'
-        }, (response: any, status: any) => {
-          if (status === 'OK') {
-            //console.log(response);
-            this.wayPoints = response.routes;
-            //this.res = response;
-            console.log(this.wayPoints[0].legs[0].steps);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-            console.log('514436');
-          }
-        });*/
->>>>>>> 5ae199e51f4c77772895066111e14d8e0065ea57
         
     }
   
