@@ -42,7 +42,7 @@ export class DisplayComponent implements OnInit {
 
     ngOnInit() {
         this.dispatcher.setComponent(this);
-        this.car = new Car(45.517814, -63.645481, this.mapService);
+        this.car = new Car(45.517814, -73.645481, this.mapService);
         var mapProp = {
             center: new google.maps.LatLng(45.517814, -73.645481),
             zoom: 10,
@@ -51,7 +51,8 @@ export class DisplayComponent implements OnInit {
         console.log(document.getElementById("googleMap"));
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         this.mapService.init(map);
-        this.car.moveCarTo(-73.645481, 45.517814);
+        map = this.mapService.map;
+        this.car.moveCarTo(-73.645481, 44.517814);
     }
 
     public updateRequests() {
@@ -60,6 +61,17 @@ export class DisplayComponent implements OnInit {
 
     public updateCars() {
         this.cars = this.dispatcher.cars;
+        for( let car of this.cars)
+        {
+            car.marker = new google.maps.Marker(
+                {
+                    position: { lat: car.currentLat, lng: car.currentLon },
+                    map: this.mapService.map,
+                    //icon: 
+
+                }
+            )
+        }
     }
 
 }

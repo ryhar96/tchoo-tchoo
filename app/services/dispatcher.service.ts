@@ -32,6 +32,7 @@ export class DispatcherService {
         this.requestGenerator = new RequestGeneratorService();
         this.requestGenerator.addDispatcher(this);
         this.createCars(N_CARS);
+        this.updateCars();
     }
 
     public assignRequest(request: Request) { 
@@ -81,7 +82,6 @@ export class DispatcherService {
     public addRequest(request: Request): void {
         this.requests.push(request);
         this.displayComponent.updateRequests();
-        console.log(this.requests);
     }
 
 }
