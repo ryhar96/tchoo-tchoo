@@ -9,7 +9,7 @@ import { MapService } from './map.service';
 import { Observable } from 'rxjs/Rx';
 
 const LAT_MAX = 45.548669;
-const LAT_MIN = 45.548286;
+const LAT_MIN = 45.450963;
 
 const LON_MIN = -73.754601;
 const LON_MAX = -73.532482;
