@@ -14,7 +14,7 @@ const LAT_MIN = 45.450963;
 const LON_MIN = -73.754601;
 const LON_MAX = -73.532482;
 
-const N_CARS = 1;
+const N_CARS = 5;
 
 @Injectable()
 export class DispatcherService {
@@ -119,7 +119,7 @@ export class DispatcherService {
     }
 
     private updateCars() {
-        Observable.interval(5000).subscribe(x => {
+        Observable.interval(300).subscribe(x => {
             this.displayComponent.updateCars();
         });
     }

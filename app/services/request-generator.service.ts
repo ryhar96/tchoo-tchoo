@@ -19,7 +19,7 @@ export class RequestGeneratorService {
     public addDispatcher(dispatcherService: DispatcherService) {
 
         this.dispatcherService = dispatcherService;
-        this.sendFixedTimeRequest(5000);
+        this.sendFixedTimeRequest(10000);
     }
     
     private sendFixedTimeRequest(periode: number): void{

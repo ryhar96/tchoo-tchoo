@@ -6,7 +6,6 @@ import { MapService } from '../services/map.service';
 import { Observable } from 'rxjs/Rx';
 
 var dirDisplay: any;
-var i: number = 0;
 
 @Injectable()
 export class CarMovementService {
@@ -32,9 +31,8 @@ export class CarMovementService {
 
 
     public moveTo(destLon: number, destLat: number) {
-                     console.log(" hihih" + i);
-
-        var obs = Observable.interval(2000).subscribe(x => {
+        let i = 0;
+        var obs = Observable.interval(300).subscribe(x => {
              //coordonnees de lq voiture = wayPoints[i].coordinnes
              console.log(this.car.currentLon);
              this.car.currentLon = this.wayPoints[i].lng();

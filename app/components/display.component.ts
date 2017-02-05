@@ -27,7 +27,7 @@ export class DisplayComponent implements OnInit {
 //------------------------------------------------------------------------------------------------
     public car: Car;
     styleArray:any[];
-    public nCars = 1; 
+    public nCars = 5; 
 //------------------------------------------------------------------------------------------------
 
     constructor(
@@ -113,7 +113,7 @@ export class DisplayComponent implements OnInit {
                 {
                     position: { lat: car.currentLat, lng: car.currentLon },
                     map: this.mapService.map,
-                    icon: '../../assets/rcar2.png' 
+                    //icon: '../../assets/rcar2.png' 
 
                 }
             ) }
