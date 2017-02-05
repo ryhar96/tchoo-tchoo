@@ -67,7 +67,11 @@ export class DisplayComponent implements OnInit {
     public changeNCars() {
         let a = this.nCars - this.cars.length;
         if(a < 0) {
+            a = -a;
             for(let i = 0; i < a; i++) {
+                this.dispatcher.cars[this.dispatcher.cars.length-1].currentLat = 0;
+                this.updateCars();
+                this.dispatcher.cars[this.dispatcher.cars.length-1].marker.setVisible(false);
                 this.dispatcher.cars.pop();
             }
         }
@@ -75,6 +79,8 @@ export class DisplayComponent implements OnInit {
             this.dispatcher.createCars(a);
         }
         this.updateCars();
+        console.log(this.dispatcher.cars);
+        console.log(this.cars);
     }
 
     ngOnInit() {
@@ -101,14 +107,18 @@ export class DisplayComponent implements OnInit {
         this.cars = this.dispatcher.cars;
         for( let car of this.cars)
         {
-            car.marker = new google.maps.Marker(
+           if(car.marker === undefined) {
+                car.marker = new google.maps.Marker(
                 {
                     position: { lat: car.currentLat, lng: car.currentLon },
                     map: this.mapService.map,
                     icon: '../../assets/rcar2.png' 
 
                 }
-            )
+            ) }
+            else {
+                car.marker.setPosition( { lat: car.currentLat, lng: car.currentLon });
+            }
         }
     }
 
