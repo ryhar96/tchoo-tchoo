@@ -44,10 +44,14 @@ export class CarMovementService {
                 this.car.endMove();
                 obs.unsubscribe();
              }
+             if(this.car.casseToi) {
+                 obs.unsubscribe();
+             }
              //this.car.moveEnd()
             
             //
         });
+        this.car.casseToi = false;
     }
     
 

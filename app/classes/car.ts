@@ -15,7 +15,8 @@ export class Car {
     public request: Request;
     public dispatcher: DispatcherService;
     public marker: any;
-    
+    public casseToi: boolean;
+
     constructor(lon: number, lat: number, map: MapService) {    
         this.carMovement = new CarMovementService(map);
         this.carMovement.setCar(this);
@@ -23,7 +24,7 @@ export class Car {
         this.currentLat = lat;
         this.isAvailable = true;
         this.step = "0";
-
+        this.casseToi = false;
         //this.map = map;
     }
 
@@ -37,6 +38,9 @@ export class Car {
     }
     
     public assignRequest(request: Request): void {
+        if(this.request != undefined) {
+            this.casseToi = true;
+        }
         this.isAvailable = false;
         this.request = request;
         this.step = "first";
@@ -57,10 +61,15 @@ export class Car {
             if (index > -1) {
                 this.dispatcher.requests.splice(index, 1);
             }
-            this.dispatcher.checkRequest();
             this.request = undefined;
             this.marker.setIcon('../../assets/green.png');
-        } else {
+
+            this.request = new Request(this.currentLon,this.currentLat,-73.885423, 45.439253);
+            this.moveCarTo(this.request.destLon, this.request.destLat);
+            this.dispatcher.checkRequest();
+
+        } else { //step == 0
+            this.request = undefined;
             //on a pas encore codé la partie réarrangement
             //if car is avaible
             //checkNerestZone with higher pound
