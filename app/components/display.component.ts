@@ -21,6 +21,7 @@ export class DisplayComponent implements OnInit {
 
     private requests: Request[];
     public map: any;
+    selectedRequest:Request;
 
     ngOnInit() {
         this.dispatcher.setComponent(this);
@@ -38,5 +39,8 @@ export class DisplayComponent implements OnInit {
     public updateRequests() {
         this.requests = this.dispatcher.requests;
     }
+    onSelect(request: Request): void {
+    this.selectedRequest = request;
+  }
 
 }

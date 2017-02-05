@@ -1,3 +1,22 @@
 <body>
-    <div id="googleMap" style="width:500px;height:380px;"></div>
+    <div class="container">
+    <h2 id="googleMap"></h2>
+          
+    <div id="request">
+    <h2 >Requests</h2>
+    <ul class="heroes">
+      <li *ngFor="let request of requests"
+        [class.selected]="request === selectedRequest"
+        (click)="onSelect(request)">
+        <span class="badge">{{request.srcLon}}</span> {{request.srcLat}}
+      </li>
+    </ul>
+    <div *ngIf="selectedRequest">
+      <h2>{{selectedRequest.srcLon}} details!</h2>
+      <div><label>id: </label>{{selectedRequest.srcLat}}</div>
+      <div>
+      </div>
+    </div>
+    </div>
+     </div>
 </body>
