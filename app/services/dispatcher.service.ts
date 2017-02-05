@@ -14,7 +14,7 @@ const LAT_MIN = 45.450963;
 const LON_MIN = -73.754601;
 const LON_MAX = -73.532482;
 
-const N_CARS = 0;
+const N_CARS = 9;
 
 @Injectable()
 export class DispatcherService {
