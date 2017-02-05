@@ -16,6 +16,18 @@ h2{
   margin-bottom:30px;
   color:#fff;
 }
+ 
+#niveau {
+  position:absolute;
+  top:8px;
+  left:120px;
+  z-index:99;
+}
+ 
+.form-control {
+  width:50px; 
+}
+ 
 
 .requests {
   height:100%;
