@@ -3,6 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { DispatcherService } from '../services/dispatcher.service';
 import { Request } from '../classes/request';
 import { MapService } from '../services/map.service';
+//------------------------------------------------------------------------------------------------
+import { Car } from '../classes/car';
+//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+const LAT_MAX = 45.548669;
+const LAT_MIN = 45.548286;
+
+const LON_MIN = -73.754601;
+const LON_MAX = -73.532482;
+//------------------------------------------------------------------------------------------------
 
 declare var google:any;
 
@@ -14,10 +24,16 @@ declare var google:any;
 
 export class DisplayComponent implements OnInit {
 
+//------------------------------------------------------------------------------------------------
+    public car: Car;
+//------------------------------------------------------------------------------------------------
+
     constructor(
         private dispatcher: DispatcherService,
         public mapService: MapService
-    ) { }
+    ) {   
+        //this.createCar(0);
+      }
 
     private requests: Request[];
     public map: any;
@@ -25,7 +41,7 @@ export class DisplayComponent implements OnInit {
 
     ngOnInit() {
         this.dispatcher.setComponent(this);
-
+        this.car = new Car(45.517814, -63.645481, this.mapService);
         var mapProp = {
             center: new google.maps.LatLng(45.517814, -73.645481),
             zoom: 10,
@@ -34,6 +50,7 @@ export class DisplayComponent implements OnInit {
         console.log(document.getElementById("googleMap"));
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         this.mapService.init(map);
+        this.car.moveCarTo(45.517814, -63.645481);
     }
 
     public updateRequests() {
@@ -42,5 +59,13 @@ export class DisplayComponent implements OnInit {
     onSelect(request: Request): void {
     this.selectedRequest = request;
   }
-
+//------------------------------------------------------------------------------------------------
+    private createCar(n: number) {
+        for(let i = 0; i < n; i++) {
+            let srcLon : number = Number((Math.random() * (LON_MAX - LON_MIN) + LON_MIN).toFixed(6));
+            let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
+            this.car = new Car(srcLon, srcLat, this.mapService);
+        }
+    }
+//------------------------------------------------------------------------------------------------
 }
