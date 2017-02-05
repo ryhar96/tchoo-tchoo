@@ -23,7 +23,7 @@ export class DispatcherService {
     public requests: Request[];
     public displayComponent: DisplayComponent;
     public requestGenerator: RequestGeneratorService;
-    public distance: number;
+    //public distance: number;
     
     constructor(
         public mapService: MapService
@@ -54,15 +54,15 @@ export class DispatcherService {
         let bestCar: Car = undefined; 
         for(let i = 0; i < this.cars.length; i++) { 
             if(this.cars[i].isAvailable == true) { 
-                this.findDistance( 
+               let dist = this.findDistance( 
                     this.cars[i].currentLon, 
                     this.cars[i].currentLat, 
                     lon, 
                     lat 
                 ); 
                 console.log(this.cars[i]);
-                if(minDistance > this.distance) { 
-                    minDistance = this.distance; 
+                if(minDistance > dist) { 
+                    minDistance = dist; 
                     bestCar = this.cars[i]; 
                 } 
             } 
@@ -71,7 +71,7 @@ export class DispatcherService {
         return bestCar;
     }
 
-    public findDistance(currLng: number, currLat: number, lng: number, lat: number): void {
+    public findDistance(currLng: number, currLat: number, lng: number, lat: number): number {
 
         var dirDisplay = this.mapService.google.maps.DirectionsRenderer;
         var dirService = new this.mapService.google.maps.DirectionsService;
@@ -80,6 +80,7 @@ export class DispatcherService {
         
         let positionEnd = {lat: lat, lng: lng};
 
+        let dist;
 
        // var waypts: number[];
 
@@ -91,15 +92,15 @@ export class DispatcherService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             //console.log(response);
-            this.distance = response.routes[0].legs[0].distance.value; //distance en metre 
+            dist = response.routes[0].legs[0].distance.value; //distance en metre 
             //this.res = response;
-            console.log(this.distance);
+            console.log(dist);//this.distance);
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
           }
         });
-
+        return dist;
 
     }
 
@@ -117,7 +118,7 @@ export class DispatcherService {
     }
 
     private updateCars() {
-        Observable.interval(500).subscribe(x => {
+        Observable.interval(5000).subscribe(x => {
             this.displayComponent.updateCars();
         });
     }

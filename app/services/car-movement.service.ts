@@ -31,7 +31,7 @@ export class CarMovementService {
     }
     public moveTo(destLon: number, destLat: number) {
         let i = 0;
-        var obs = Observable.interval(500).subscribe(x => {
+        var obs = Observable.interval(5000).subscribe(x => {
              //coordonnees de lq voiture = wayPoints[i].coordinnes
              this.car.currentLon = this.wayPoints[i].lng();
              this.car.currentLat = this.wayPoints[i].lat();
