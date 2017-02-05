@@ -50,7 +50,12 @@ export class Car {
         } else if(this.step == "second") {
             this.step = "0";
             this.isAvailable = true;
+            var index = this.dispatcher.requests.indexOf(this.request, 0);
+            if (index > -1) {
+                this.dispatcher.requests.splice(index, 1);
+            }
             this.dispatcher.checkRequest();
+            this.request = undefined;
         } else {
             //on a pas encore codé la partie réarrangement
             //if car is avaible
