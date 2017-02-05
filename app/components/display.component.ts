@@ -50,7 +50,7 @@ export class DisplayComponent implements OnInit {
         console.log(document.getElementById("googleMap"));
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         this.mapService.init(map);
-        this.car.moveCarTo(45.517814, -63.645481);
+        this.car.moveCarTo(-73.645481, 45.517814);
     }
 
     public updateRequests() {

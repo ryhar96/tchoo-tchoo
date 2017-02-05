@@ -44,9 +44,9 @@ export class CarMovementService {
 
     public getRoute(destLon: number, destLat: number): void {
         let positionOrigin = {lat:  this.latitude, lng: this.longitude};
-        console.log(this.longitude);
-        var positionEnd: number[] = [destLat, destLon];
-                    
+        
+        let positionEnd = {lat: destLat, lng: destLon};
+        console.log(positionEnd);
 
         display = this.mapService;
         dirDisplay = this.mapService.google.maps.DirectionsRenderer;
@@ -56,7 +56,7 @@ export class CarMovementService {
         
         dirService.route({
           origin: positionOrigin,
-          destination: {lat: 45.517814, lng: -63.645481},
+          destination: positionEnd,
           waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'DRIVING'
