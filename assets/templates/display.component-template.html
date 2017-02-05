@@ -1,5 +1,6 @@
 <body>
   <div class="main">
+    <h1>TCHOO TCHOO</h1>
       <p id="niveau">
         <input class="form-control" [(ngModel)]="nCars" (ngModelChange)="changeNCars()">
     </p>
@@ -8,16 +9,21 @@
       <h2>Requests</h2>
       <ul>
           <li *ngFor="let request of requests">
-              <div class="alert alert-success" *ngIf="request.isBeingProcessed">
-              <p style="font-weight:bold"><i class="fa fa-check" aria-hidden="true"></i> En cours...</p>
-                ({{ request.srcLon.toFixed(3) }} ; {{request.srcLat.toFixed(3)}})
+              <div class="alert alert-warning" *ngIf="request.isBeingProcessed === true && request.people === false">
+              <p style="font-weight:bold"><i class="fa fa-clock-o" aria-hidden="true"></i> En chemin...</p>
+                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
               <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
               </div>
-              <div class="alert alert-warning" *ngIf="request.isBeingProcessed === false">
+              <div class="alert alert-danger" *ngIf="request.isBeingProcessed === false && request.people === false">
                 <p style="font-weight:bold"><i class="fa fa-male" aria-hidden="true"></i> En attente :</p>
-                ({{ request.srcLon.toFixed(3) }} ; {{request.srcLat.toFixed(3)}})
+                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
               <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
               </div>
+              <div class="alert alert-success" *ngIf="request.isBeingProcessed === true && request.people === true">
+                <p style="font-weight:bold"><i class="fa fa-check" aria-hidden="true"></i> En cours :</p>
+                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
+              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+              </div>        
           </li>
       </ul>
     </div>

@@ -54,7 +54,9 @@ export class Car {
             this.moveCarTo(this.request.destLon, this.request.destLat);
             this.step = "second";
             this.marker.setIcon('../../assets/red.png');
+            this.request.people = true;
         } else if(this.step == "second") {
+            this.request.people = false;
             this.step = "0";
             this.isAvailable = true;
             var index = this.dispatcher.requests.indexOf(this.request, 0);

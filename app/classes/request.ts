@@ -5,6 +5,7 @@ export class Request {
     public destLon: number;
     public destLat: number;
     public isBeingProcessed: boolean;
+    public people: boolean;
 
     constructor(srcLon: number, srcLat: number, destLon: number, destLat: number) {
         this.srcLon = srcLon;
@@ -12,6 +13,7 @@ export class Request {
         this.destLon = destLon;
         this.destLat = destLat;
         this.isBeingProcessed = false;
+        this.people = false;
     }
 
 }
