@@ -8,6 +8,8 @@ export class MapService {
     
     public map: any;
 
+    public google: any = google;
+
     init(map: any) {
         this.map = map;
     }
