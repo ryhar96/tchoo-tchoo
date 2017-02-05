@@ -23,6 +23,7 @@ export class DispatcherService {
     public requests: Request[];
     public displayComponent: DisplayComponent;
     public requestGenerator: RequestGeneratorService;
+    public distance: number;
     
     constructor(
         public mapService: MapService
@@ -34,32 +35,71 @@ export class DispatcherService {
         this.createCars(N_CARS);
         this.updateCars();
     }
-
-    public assignRequest(request: Request) { 
-        let car = this.findNearestAvailable(request.srcLon, request.srcLat); 
-        request.isBeingProcessed = true;
-        this.displayComponent.updateRequests();
-        car.assignRequest(request);
-    } 
  
+    public checkRequest(): void {
+        for(let request of this.requests) {
+            if (request.isBeingProcessed === false) {
+                let car = this.findNearestAvailable(request.srcLon, request.srcLat);
+                if (car != undefined) {
+                    request.isBeingProcessed = true;
+                    this.displayComponent.updateRequests();
+                    car.assignRequest(request);
+                }
+            }
+        }
+    }
+
     public findNearestAvailable(lon: number, lat: number): Car { 
-        /*let minDistance = 10000000; 
+        let minDistance = 10000000; 
         let bestCar: Car = undefined; 
-        for(let i = 0; i < cars.length; i++) { 
-            if(cars[i].isAvailable == true) { 
-                let distance = findDistance( 
-                    cars[i].srcLon, 
-                    cars[i].srcLat, 
+        for(let i = 0; i < this.cars.length; i++) { 
+            if(this.cars[i].isAvailable == true) { 
+                this.findDistance( 
+                    this.cars[i].currentLon, 
+                    this.cars[i].currentLat, 
                     lon, 
                     lat 
                 ); 
-                if(minDistance > distance) { 
+                console.log(this.cars[i]);
+                if(minDistance > this.distance) { 
                     minDistance = distance; 
-                    bestCar = cars[i]; 
+                    bestCar = this.cars[i]; 
                 } 
             } 
         } 
-        return bestCar;  */return new Car(0, 0, this.mapService);
+        return bestCar;
+    }
+
+    public findDistance(currLng: number, currLat: number, lng: number, lat: number): void {
+
+        var dirDisplay = this.mapService.google.maps.DirectionsRenderer;
+        var dirService = new this.mapService.google.maps.DirectionsService;
+
+        let positionOrigin = {lat:  currLat, lng: currLng};
+        
+        let positionEnd = {lat: lat, lng: lng};
+
+
+        var waypts: number[];
+
+        dirService.route({
+          origin: positionOrigin,
+          destination: positionEnd,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, (response: any, status: any) => {
+          if (status === 'OK') {
+            //console.log(response);
+            this.distance = response.routes[0].legs[0].distance.value;
+            //this.res = response;
+            console.log(this.distance);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+            console.log('514436');
+          }
+        });
+
+
     }
 
     private createCars(n: number) {
@@ -67,6 +107,7 @@ export class DispatcherService {
             let srcLon : number = Number((Math.random() * (LON_MAX - LON_MIN) + LON_MIN).toFixed(6));
             let srcLat : number = Number((Math.random() * (LAT_MAX - LAT_MIN) + LAT_MIN).toFixed(6));
             this.cars.push(new Car(srcLon, srcLat, this.mapService));
+            this.cars[this.cars.length-1].setDispatcher(this);
         }
     }
 
@@ -75,7 +116,7 @@ export class DispatcherService {
     }
 
     private updateCars() {
-        Observable.interval(50).subscribe(x => {
+        Observable.interval(500).subscribe(x => {
             this.displayComponent.updateCars();
         });
     }

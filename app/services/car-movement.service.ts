@@ -40,15 +40,18 @@ export class CarMovementService {
     }
     public moveTo(destLon: number, destLat: number) {
         let i = 0;
-        //var obs = Observable.interval(100).subscribe(x => {
+        var obs = Observable.interval(500).subscribe(x => {
              //coordonnees de lq voiture = wayPoints[i].coordinnes
-             //this.car.currentLon = this.wayPoints[i].lng;
-             //i++
-             //if i == array.length
+             this.car.currentLon = this.wayPoints[i].lng();
+             this.car.currentLat = this.wayPoints[i].lat();
+             i++;
+             if (i == this.wayPoints.length) {
+                this.car.endMove();
+             }
              //this.car.moveEnd()
-            // obs.unsubscribe();
+             obs.unsubscribe();
             //
-        //});
+        });
     }
     
 
@@ -68,7 +71,7 @@ export class CarMovementService {
         dirService.route({
           origin: positionOrigin,
           destination: positionEnd,
-          waypoints: waypts,
+         //waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'DRIVING'
         }, (response: any, status: any) => {
@@ -76,12 +79,14 @@ export class CarMovementService {
             //console.log(response);
             this.wayPoints = response.routes[0].overview_path;
             //this.res = response;
-            console.log(this.wayPoints[0].lat());
+            console.log(this.wayPoints[0]);
           } else {
             window.alert('Directions request failed due to ' + status);
             console.log('514436');
           }
         });
+
+        this.moveTo(destLon,destLat);
         
     }
   
