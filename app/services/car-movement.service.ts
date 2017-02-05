@@ -69,7 +69,6 @@ export class CarMovementService {
         }, (response: any, status: any) => {
           if (status === 'OK') {
             //console.log(response);
-            qgfq= response.routes[0].overview_path[0].lat();
             this.wayPoints = response.routes[0].overview_path;
             //this.res = response;
           } else {
