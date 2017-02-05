@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { DispatcherService } from '../services/dispatcher.service';
 import { Request } from '../classes/request';
+import { MapService } from '../services/map.service';
 
 declare var google:any;
+
 @Component({
     selector: 'my-display',
     templateUrl: '../../assets/templates/display.component-template.html',
@@ -12,19 +14,24 @@ declare var google:any;
 
 export class DisplayComponent implements OnInit {
 
-    constructor(private dispatcher: DispatcherService) { }
+    constructor(
+        private dispatcher: DispatcherService,
+        public mapService: MapService
+    ) { }
 
     private requests: Request[];
 
-    public map: any;
-     ngOnInit() {
+    ngOnInit() {
+        this.dispatcher.setComponent(this);
+
         var mapProp = {
-            center: new google.maps.LatLng(51.508742, -0.120850),
-            zoom: 5,
+            center: new google.maps.LatLng(45.517814, -73.645481),
+            zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        this.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        this.dispatcher.setComponent(this);
+        console.log(document.getElementById("googleMap"));
+        let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        this.mapService.init(map);
     }
 
     public updateRequests() {

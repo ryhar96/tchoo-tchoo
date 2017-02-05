@@ -1,36 +1,39 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Car } from '../classes/car';
-import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { DisplayComponent } from '../components/display.component';
-
-declare var google:any;
-
+import { MapService } from '../services/map.service';
 
 @Injectable()
-export class CarMovementService {
+export class CarMovementService implements OnInit {
+
+    constructor(
+        public mapService: MapService
+    ) { }
+
+    ngOnInit() {
+
+    }
 
     public longitude: number;
     public latitude: number;
     public position: number[];
     //public directionService: AgmCoreModule;
 
-    public displayComponent: DisplayComponent;
-
-    public directionsService = new this.displayComponent.map.DirectionsService;
-    public directionsDisplay = new this.displayComponent.map.DirectionsRenderer;
+//    public directionsService = new this.displayComponent.map.DirectionsService;
+  //  public directionsDisplay = new this.displayComponent.map.DirectionsRenderer;
     
     private car: Car;
 
     public setCar(car: Car): void {
         this.car = car;
         //this.directionService = ;
-        this.displayComponent.map;
+    //    this.displayComponent.map;
     }
     public moveTo(destLon: number, destLat: number) {
         
     }
-
+/*
     public getRoute(destLon: number, destLat: number): void {
         var positionOrigin: number[] = [this.longitude, this.latitude];
         var positionEnd: number[] = [destLon, destLat];
@@ -50,5 +53,5 @@ export class CarMovementService {
                  }
             }
         );
-    }
+    }*/
 }

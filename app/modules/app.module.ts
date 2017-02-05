@@ -9,8 +9,9 @@ import { AppComponent } from '../components/app.component';
 import { DisplayComponent } from '../components/display.component';
 import { RequestGeneratorService } from '../services/request-generator.service';
 import { DispatcherService } from '../services/dispatcher.service';
+import { MapService } from '../services/map.service';
 
-import {AgmCoreModule} from 'angular2-google-maps/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AgmCoreModule} from 'angular2-google-maps/core';
   providers: [
     RequestGeneratorService,
     DispatcherService,
-    CarMovementService
+    CarMovementService,
+    MapService
   ],
 
   bootstrap: [ AppComponent ]
