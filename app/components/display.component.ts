@@ -20,6 +20,7 @@ export class DisplayComponent implements OnInit {
     ) { }
 
     private requests: Request[];
+    public map: any;
 
     ngOnInit() {
         this.dispatcher.setComponent(this);
