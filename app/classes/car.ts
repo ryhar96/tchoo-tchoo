@@ -47,6 +47,10 @@ export class Car {
             this.isAvailable = true;
         } else {
             //on a pas encore codé la partie réarrangement
+            //if car is avaible
+            //checkNerestZone with higher pound
+            //moveCarTo(zone)
+            //
         }
     }
 }
