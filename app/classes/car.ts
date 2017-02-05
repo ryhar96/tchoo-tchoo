@@ -1,6 +1,12 @@
 import { CarMovementService } from '../services/car-movement.service';
 import { Request } from './request';
 
+//-----------------------------------------------------------------------------------
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
+import { DisplayComponent } from '../components/display.component';
+//-----------------------------------------------------------------------------------
+
 export class Car {
     public number: number;
     public currentLon: number;
@@ -8,9 +14,12 @@ export class Car {
     public carMovement: CarMovementService;
     public isAvailable: boolean;
 
-    constructor() {    
-        this.carMovement = new CarMovementService();
-        this.carMovement.setCar(this);
+    constructor(lon: number, lat: number) {    
+        //this.carMovement = new CarMovementService();
+        //this.carMovement.setCar(this);
+        this.currentLon = lon;
+        this.currentLat = lat;
+        this.isAvailable = true;
     }
 
     public moveCarTo(lon: number, lat: number): void {
