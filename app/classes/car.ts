@@ -66,17 +66,13 @@ export class Car {
             this.request = undefined;
             this.marker.setIcon('../../assets/green.png');
 
-            this.request = new Request(this.currentLon,this.currentLat,-73.561264,45.504078);
+            this.request = new Request(this.currentLon,this.currentLat,Number((Math.random() * (-73.560731 + 73.579064) - 73.578064).toFixed(6)),Number((Math.random() * (45.505234 - 45.505234) + 45.505234).toFixed(6)));
             this.moveCarTo(this.request.destLon, this.request.destLat);
             this.dispatcher.checkRequest();
 
         } else { //step == 0
             this.request = undefined;
-            //on a pas encore codé la partie réarrangement
-            //if car is avaible
-            //checkNerestZone with higher pound
-            //moveCarTo(zone)
-            //
         }
+        
     }
 }
