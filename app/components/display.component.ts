@@ -26,13 +26,35 @@ export class DisplayComponent implements OnInit {
 
 //------------------------------------------------------------------------------------------------
     public car: Car;
+    styleArray:any[];
 //------------------------------------------------------------------------------------------------
 
     constructor(
         public dispatcher: DispatcherService,
         public mapService: MapService
-    ) {   
-        //this.createCar(0);
+        
+    ) { 
+     
+    this.styleArray = [
+    {
+      featureType: 'road',
+      stylers: [
+        { saturation: -80 }
+      ]
+    },{
+      featureType: 'road.arterial',
+      elementType: 'geometry',
+      stylers: [
+        { hue: '#00d4ff' },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: 'road',
+      elementType: 'labels',
+      stylers: [
+        { visibility: 'off' }
+      ]
+    }
       }
 
     private requests: Request[];
@@ -46,7 +68,8 @@ export class DisplayComponent implements OnInit {
         var mapProp = {
             center: new google.maps.LatLng(45.517814, -73.645481),
             zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: this.styleArray
         };
         console.log(document.getElementById("googleMap"));
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
