@@ -10,19 +10,19 @@
       <ul>
           <li *ngFor="let request of requests">
               <div class="alert alert-warning" *ngIf="request.isBeingProcessed === true && request.people === false">
-              <p style="font-weight:bold"><i class="fa fa-clock-o" aria-hidden="true"></i> En chemin...</p>
-                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
-              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+              <p style="font-weight:bold"><i class="fa fa-clock-o" aria-hidden="true"></i> <b>En chemin...</b></p>
+                <i class="fa fa-home" aria-hidden="true"></i>: {{ request.srcAddress }}
+              <br><i class="fa fa-arrow-right" aria-hidden="true"></i>  &nbsp;{{request.destAddress}}
               </div>
               <div class="alert alert-danger" *ngIf="request.isBeingProcessed === false && request.people === false">
-                <p style="font-weight:bold"><i class="fa fa-male" aria-hidden="true"></i> En attente :</p>
-                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
-              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+                <p style="font-weight:bold"><i class="fa fa-male" aria-hidden="true"></i> <b>En attente...</b></p>
+                <i class="fa fa-home" aria-hidden="true"></i>: {{ request.srcAddress }} 
+              <br><i class="fa fa-arrow-right" aria-hidden="true"></i>  &nbsp;{{request.destAddress}}
               </div>
               <div class="alert alert-success" *ngIf="request.isBeingProcessed === true && request.people === true">
-                <p style="font-weight:bold"><i class="fa fa-check" aria-hidden="true"></i> En cours :</p>
-                ({{ request.srcLat.toFixed(3) }} ; {{request.srcLon.toFixed(3)}})
-              <i class="fa fa-arrow-right" aria-hidden="true"></i> ({{ request.destLon.toFixed(3) }} ; {{request.destLat.toFixed(3)}})
+                <p style="font-weight:bold"><i class="fa fa-check" aria-hidden="true"></i> <b>En cours...</b></p>
+               <i class="fa fa-home" aria-hidden="true"></i>: {{ request.srcAddress }}
+              <br><i class="fa fa-arrow-right" aria-hidden="true"></i>  &nbsp;{{request.destAddress}}
               </div>        
           </li>
       </ul>

@@ -60,6 +60,7 @@ export class DisplayComponent implements OnInit {
     }
 
     private requests: Request[];
+    private convertedAddresses: string[];
     private cars: Car[];
     public map: any;
     selectedRequest:Request;
@@ -122,5 +123,7 @@ export class DisplayComponent implements OnInit {
             }
         }
     }
+
+    
 
 }
